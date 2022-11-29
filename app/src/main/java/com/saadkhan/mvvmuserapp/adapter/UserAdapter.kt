@@ -7,24 +7,24 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.saadkhan.mvvmuserapp.databinding.UserAdapterLayoutBinding
-import com.saadkhan.mvvmuserapp.model.UserModel
+import com.saadkhan.mvvmuserapp.model.User
 import com.saadkhan.mvvmuserapp.utils.getUsername
 import javax.inject.Inject
 
 
 class UserAdapter @Inject constructor() :
-    ListAdapter<UserModel, UserAdapter.ImageViewHolder>(diffCallback) {
+    ListAdapter<User, UserAdapter.ImageViewHolder>(diffCallback) {
 
     inner class ImageViewHolder(val binding: UserAdapterLayoutBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<UserModel>() {
-            override fun areItemsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
+        val diffCallback = object : DiffUtil.ItemCallback<User>() {
+            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
+            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
                 return oldItem.equals(newItem)
             }
         }
@@ -44,11 +44,10 @@ class UserAdapter @Inject constructor() :
         holder.binding.apply {
             holder.itemView.apply {
                 tvName.text = currChar.name?.getUsername() ?: ""
-
                 tvEmail.text = "${currChar?.email}"
-                tvEmail.text = "${currChar?.phone}"
+                tvPhone.text = "${currChar?.phone}"
 
-                imageView.load(currChar?.picture?.thumbnail) {
+                imageView.load(currChar?.picture?.large) {
                     crossfade(true)
                     crossfade(1000)
                 }

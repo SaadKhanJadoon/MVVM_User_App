@@ -8,6 +8,6 @@ interface ApiService {
 
     @GET(Constants.BASE_URL)
     suspend fun getAllUsers(
-    ): List<UserModel>
+    ): UserModel
 
 }

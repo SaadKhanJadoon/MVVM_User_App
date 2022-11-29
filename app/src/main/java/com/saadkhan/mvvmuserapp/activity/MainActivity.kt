@@ -1,4 +1,4 @@
-package com.saadkhan.mvvmuserapp
+package com.saadkhan.mvvmuserapp.activity
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -25,13 +25,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.getAllUser()
         setupRecyclerView()
         loadData()
     }
 
     private fun setupRecyclerView() {
         binding.recyclerView.apply {
+            adapter = userAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(true)
         }
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadData() {
         lifecycleScope.launch {
             viewModel.allUser.observe(this@MainActivity) {
-                userAdapter.submitList(it)
+                userAdapter.submitList(it.results)
             }
         }
     }

@@ -12,9 +12,13 @@ import javax.inject.Inject
 @HiltViewModel
 class UserViewModel @Inject constructor(private val repository: UserRepository) : ViewModel() {
 
-    var allUser = MutableLiveData<ArrayList<UserModel>>()
+    var allUser = MutableLiveData<UserModel>()
 
-    fun getAllUser() = viewModelScope.launch {
-        allUser.value = repository.getAllUser() as ArrayList<UserModel>
+    init {
+        getAllUser()
+    }
+
+    private fun getAllUser() = viewModelScope.launch {
+        allUser.postValue(repository.getAllUser())
     }
 }
