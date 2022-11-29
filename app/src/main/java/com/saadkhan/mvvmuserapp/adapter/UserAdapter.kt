@@ -44,6 +44,7 @@ class UserAdapter @Inject constructor() :
         holder.binding.apply {
             holder.itemView.apply {
                 tvName.text = currChar.name?.getUsername() ?: ""
+
                 tvEmail.text = "${currChar?.email}"
                 tvEmail.text = "${currChar?.phone}"
 
