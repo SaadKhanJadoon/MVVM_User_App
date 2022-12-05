@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVMUserApp">
         <activity
-            android:name=".activity.SplashScreen"
+            android:name=".activity.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/splashTheme">
             <intent-filter>
@@ -23,6 +23,9 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UserDetailsActivity"
             android:exported="false" />
     </application>
 

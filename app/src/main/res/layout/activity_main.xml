@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.skydoves.androidveil.VeilRecyclerFrameView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -15,6 +15,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:veilFrame_baseAlpha="0.6"
+        app:veilFrame_baseColor="@color/shimmer_color"
+        app:veilFrame_highlightAlpha="1.0"
+        app:veilFrame_highlightColor="@color/shimmer_color"
+        app:veilFrame_isItemWrapContentHeight="true"
+        app:veilFrame_isItemWrapContentWidth="false"
+        app:veilFrame_layout="@layout/user_adapter_layout"
+        app:veilFrame_radius="5dp"
+        app:veilFrame_veiled="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

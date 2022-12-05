@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.saadkhan.mvvmuserapp.databinding.UserAdapterLayoutBinding
 import com.saadkhan.mvvmuserapp.model.User
+import com.saadkhan.mvvmuserapp.utils.Companion.Companion.userObject
 import com.saadkhan.mvvmuserapp.utils.getUsername
 import javax.inject.Inject
-
 
 class UserAdapter @Inject constructor() :
     ListAdapter<User, UserAdapter.ImageViewHolder>(diffCallback) {
@@ -47,11 +47,26 @@ class UserAdapter @Inject constructor() :
                 tvEmail.text = "${currChar?.email}"
                 tvPhone.text = "${currChar?.phone}"
 
-                imageView.load(currChar?.picture?.large) {
+                userImage.load(currChar?.picture?.large) {
                     crossfade(true)
                     crossfade(1000)
                 }
+
+                this.setOnClickListener {
+                    userObject = getItem(position)
+                    mListener?.onItemClick()
+                }
             }
         }
+    }
+
+    private var mListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener?) {
+        mListener = listener
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick()
     }
 }

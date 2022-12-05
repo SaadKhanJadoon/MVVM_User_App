@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVVM User App</string>
+    <string name="textview">Textview</string>
 </resources>
