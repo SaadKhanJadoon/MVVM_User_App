@@ -15,7 +15,6 @@ https://user-images.githubusercontent.com/61506756/213904820-84c864d6-8e1c-48a6-
 + Facebook Shimmer Layout.
 + Coil (for Image Loading).
 + Kotlin Coroutines.
-+ Kotlin Flow.
 + Sealed Class.
 
 # Benefits of using MVVM Architecture
