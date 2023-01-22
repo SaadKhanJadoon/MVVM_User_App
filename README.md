@@ -3,6 +3,10 @@
 This is an Android Application based on MVVM Architecture that uses [Random User Generator Api](https://randomuser.me/documentation) for fetching data.
 
 
+
+https://user-images.githubusercontent.com/61506756/213904820-84c864d6-8e1c-48a6-86a6-8ad562893a94.mp4
+
+
 # Built With
 + MVVM Architecture
 + Modern Splash Screen
