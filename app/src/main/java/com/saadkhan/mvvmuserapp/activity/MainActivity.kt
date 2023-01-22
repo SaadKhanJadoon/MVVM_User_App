@@ -6,8 +6,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.saadkhan.mvvmuserapp.adapter.UserAdapter
 import com.saadkhan.mvvmuserapp.databinding.ActivityMainBinding
+import com.saadkhan.mvvmuserapp.model.UserModel
+import com.saadkhan.mvvmuserapp.utils.ApiResult
 import com.saadkhan.mvvmuserapp.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -28,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainBinding.root)
 
         setupRecyclerView()
-        loadData()
+        loadDataFromViewModel()
     }
 
     private fun setupRecyclerView() {
@@ -45,13 +48,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadData() {
+    private fun loadDataFromViewModel() {
         lifecycleScope.launch {
-            viewModel.allUser.observe(this@MainActivity) {
-                userAdapter.submitList(it.results)
-                binding?.recyclerView?.unVeil()
+            viewModel.apiResult.observe(this@MainActivity) {
+                when (it) {
+                    is ApiResult.Success -> showData(it.userModel)
+                    is ApiResult.Error -> showError()
+                    is ApiResult.Loading -> showLoading()
+                }
             }
         }
+    }
+
+    private fun showData(userModel: UserModel) {
+        userAdapter.submitList(userModel.results)
+        binding?.recyclerView?.unVeil()
+    }
+
+    private fun showError() {
+        Snackbar.make(binding?.root!!, "Error in loading data", Snackbar.LENGTH_LONG).show()
+    }
+
+    private fun showLoading() {
+        binding?.recyclerView?.veil()
     }
 
     override fun onDestroy() {
